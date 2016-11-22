@@ -26,14 +26,18 @@ try {
 }
 ```
 
-Link to complete code: https://github.com/juliancesar/demoiselle-multipersistenceunit/blob/master/src/main/java/br/com/juliancesar/multipersistenceunit/business/StartBusiness.java
+Link to complete code: https://github.com/juliancesar/demoiselle-multipersistenceunit/blob/master/src/main/java/br/com/juliancesar/multipersistenceunit/business/StartContainerBusiness.java
+Link to complete code: https://github.com/juliancesar/demoiselle-multipersistenceunit/blob/master/src/main/java/br/com/juliancesar/multipersistenceunit/business/StartBeanBusiness.java
 
 
 ## Test
 
-* URL: POST http://localhost:8080/multipersistenceunit/api/start/false/false/false/
+* start[Container|Bean]/{commitCategory}/{makeThrowsStep1}/{makeThrowsStep2}/{makeThrowsStep3}
 
-* Curl: `curl -X GET -H "Cache-Control: no-cache" "http://localhost:8080/multipersistenceunit/api/start/false/false/false/"`
+* URL: POST http://localhost:8080/multipersistenceunit/api/startContainer/false/false/false/false
+* URL: POST http://localhost:8080/multipersistenceunit/api/startBean/false/false/false/false
+* Curl: `curl -X GET -H "Cache-Control: no-cache" "http://localhost:8080/multipersistenceunit/api/startContainer/false/false/false/false"`
+* Curl: `curl -X GET -H "Cache-Control: no-cache" "http://localhost:8080/multipersistenceunit/api/startBean/false/false/false/false"`
 
 
 ## Standalone.xml (Partial)
