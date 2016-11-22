@@ -127,5 +127,18 @@ Link to complete code: https://github.com/juliancesar/demoiselle-multipersistenc
 		</properties>
 	</persistence-unit>
 	
+	<persistence-unit name="ExamplePU" transaction-type="JTA">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
+        
+        <class>br.com.juliancesar.multipersistenceunit.entity.Example</class>
+        
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
+            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+        </properties>
+    </persistence-unit>
+	
 </persistence>
 ```

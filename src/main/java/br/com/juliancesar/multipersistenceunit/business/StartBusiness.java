@@ -9,9 +9,11 @@ import javax.ejb.TransactionManagementType;
 import javax.inject.Inject;
 import javax.transaction.UserTransaction;
 
+import br.com.juliancesar.multipersistenceunit.dao.ExampleDAO;
 import br.com.juliancesar.multipersistenceunit.dao.NewsCategoryDAO;
 import br.com.juliancesar.multipersistenceunit.dao.NewsDAO;
 import br.com.juliancesar.multipersistenceunit.dao.UserDAO;
+import br.com.juliancesar.multipersistenceunit.entity.Example;
 import br.com.juliancesar.multipersistenceunit.entity.News;
 import br.com.juliancesar.multipersistenceunit.entity.NewsCategory;
 import br.com.juliancesar.multipersistenceunit.entity.User;
@@ -28,6 +30,9 @@ public class StartBusiness {
 	@Inject
 	private UserDAO userDao;
 
+	@Inject
+	private ExampleDAO exampleDao;
+	
 	@Resource
 	private UserTransaction userTransaction;
 
@@ -39,6 +44,7 @@ public class StartBusiness {
 		NewsCategory category = new NewsCategory("Categoria 0001");
 		News news = new News("Título Notícia 0001", category);
 		User user = new User("Julian");
+		Example example = new Example("Example");
 
 		try {
 
@@ -66,6 +72,10 @@ public class StartBusiness {
 			if (makeThrowsStep3)
 				throw new Exception("Erro forçado para ROLLBACK de tudo! STEP 3");
 
+			// PU Example
+			log.info("Create Example (PU Example)");
+			exampleDao.create(example);	
+			
 			// COMMIT ALL
 			log.info("Commit transaction");
 			userTransaction.commit();
@@ -81,7 +91,7 @@ public class StartBusiness {
 				log.log(Level.SEVERE, "Error when made ROLLBACK!", ex);
 			}
 			
-			log.log(Level.SEVERE, "Business Error: ", e.getMessage());
+			log.log(Level.SEVERE, "Business Error");
 			
 			return false;
 		}
