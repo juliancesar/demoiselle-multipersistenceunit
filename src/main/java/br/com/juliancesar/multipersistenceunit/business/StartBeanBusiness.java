@@ -41,6 +41,8 @@ public class StartBeanBusiness {
 
 	public boolean start(boolean commitCategory, boolean makeThrowsStep1, boolean makeThrowsStep2, boolean makeThrowsStep3) {
 
+		log.info("===== Starting Process WITH BEAN MANAGED transaction =====");
+		
 		NewsCategory category = new NewsCategory("Categoria 0001");
 		News news = new News("Título Notícia 0001", category);
 		User user = new User("Julian");
@@ -58,6 +60,9 @@ public class StartBeanBusiness {
 			
 			if (commitCategory) {
 				userTransaction.commit();
+				
+				log.info("Commit News Category and new BEGIN");
+				
 				userTransaction.begin();
 			}
 			
