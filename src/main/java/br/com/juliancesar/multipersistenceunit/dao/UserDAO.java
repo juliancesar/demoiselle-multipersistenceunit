@@ -12,7 +12,7 @@ public class UserDAO {
 
 	@PersistenceContext(unitName = "UserPU")
 	protected EntityManager entityManager;
-
+	
 	public void create(User noticia) {
 		entityManager.persist(noticia);
 	}

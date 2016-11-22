@@ -3,7 +3,6 @@ package br.com.juliancesar.multipersistenceunit.service;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -23,8 +22,7 @@ public class UserREST {
 	@Inject
 	private UserBusiness business;
 
-	@POST
-	@Transactional
+	@POST	
 	public Response create(User noticia) {
 		business.create(noticia);
 		return Response.ok().build();
