@@ -31,7 +31,10 @@ Link to complete code: https://github.com/juliancesar/demoiselle-multipersistenc
 
 ## Test
 
-* POST http://localhost:8080/multipersistenceunit/api/start/false/false/false/
+* URL: POST http://localhost:8080/multipersistenceunit/api/start/false/false/false/
+
+* Curl: `curl -X GET -H "Cache-Control: no-cache" "http://localhost:8080/multipersistenceunit/api/start/false/false/false/"`
+
 
 ## Standalone.xml (Partial)
 
