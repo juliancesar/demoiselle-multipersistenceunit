@@ -81,7 +81,7 @@ public class StartBusiness {
 				log.log(Level.SEVERE, "Error when made ROLLBACK!", ex);
 			}
 			
-			log.log(Level.SEVERE, "Error!", e);
+			log.log(Level.SEVERE, "Business Error: ", e.getMessage());
 			
 			return false;
 		}

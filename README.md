@@ -1,12 +1,41 @@
 # Projeto de Teste para Multiplas Unidades de Persistência com Transações JTA/JPA
 
+## Main Test
+
+```java
+try {
+
+	// BEGIN ALL
+	userTransaction.begin();
+
+	// PU News
+	newsCategoryDao.create(category);
+	newsDao.create(news);
+
+	// PU User
+	userDao.create(user);
+
+	// COMMIT ALL
+	userTransaction.commit();
+
+} catch (Exception e) {
+
+	// ROLLBACK ALL!	
+	userTransaction.rollback();
+
+}
+```
+
+Link to complete code: https://github.com/juliancesar/demoiselle-multipersistenceunit/blob/master/src/main/java/br/com/juliancesar/multipersistenceunit/business/StartBusiness.java
+
+
 ## Test
 
 * POST http://localhost:8080/multipersistenceunit/api/start/false/false/false/
 
 ## Standalone.xml
 
-```
+```xml
 <xa-datasource jndi-name="java:jboss/datasources/UserDS" pool-name="UserDS" enabled="true" use-java-context="true">
     <xa-datasource-property name="ServerName">
         localhost
