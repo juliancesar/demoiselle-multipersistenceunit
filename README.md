@@ -1,4 +1,4 @@
-# Projeto de Teste para Multiplas Unidades de Persistência com Transações JTA/JPA
+# Projeto de Teste para Multiplas Unidades de Persistência com Transações JPA
 
 ## Main Test
 
