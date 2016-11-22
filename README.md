@@ -1,5 +1,11 @@
 # Projeto de Teste para Multiplas Unidades de Persistência com Transações JTA/JPA
 
+## Test
+
+* POST http://localhost:8080/multipersistenceunit/api/start/false/false/false/
+
+## Standalone.xml
+
 ```
 <xa-datasource jndi-name="java:jboss/datasources/UserDS" pool-name="UserDS" enabled="true" use-java-context="true">
     <xa-datasource-property name="ServerName">
