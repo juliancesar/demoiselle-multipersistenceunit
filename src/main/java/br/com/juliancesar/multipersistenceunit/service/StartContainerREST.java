@@ -23,7 +23,7 @@ public class StartContainerREST {
 	@Path("{commitCategory}/{makeThrowsStep1}/{makeThrowsStep2}/{makeThrowsStep3}")
 	public Response start(@PathParam(value = "commitCategory") boolean commitCategory,@PathParam(value = "makeThrowsStep1") boolean makeThrowsStep1,
 			@PathParam(value = "makeThrowsStep2") boolean makeThrowsStep2,
-			@PathParam(value = "makeThrowsStep3") boolean makeThrowsStep3) {
+			@PathParam(value = "makeThrowsStep3") boolean makeThrowsStep3) throws Exception {
 
 		// Call business layer
 		boolean success = business.start(commitCategory, makeThrowsStep1, makeThrowsStep2, makeThrowsStep3);

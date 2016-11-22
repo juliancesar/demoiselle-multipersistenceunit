@@ -1,6 +1,5 @@
 package br.com.juliancesar.multipersistenceunit.business;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.ejb.TransactionManagement;
@@ -35,10 +34,10 @@ public class StartContainerBusiness {
 	@Inject
 	private static final Logger log = Logger.getLogger(StartContainerBusiness.class.getName());
 
-	@Transactional
+	@Transactional(rollbackOn = Exception.class)
 	public boolean start(boolean commitCategory, boolean makeThrowsStep1, boolean makeThrowsStep2,
-			boolean makeThrowsStep3) {
-
+			boolean makeThrowsStep3) throws Exception {
+		
 		log.info("===== Starting Process WITH CONTAINER MANAGED transaction =====");
 
 		NewsCategory category = new NewsCategory("Categoria 0001");
@@ -46,41 +45,32 @@ public class StartContainerBusiness {
 		User user = new User("Julian");
 		Example example = new Example("Example");
 
-		try {
-			// PU News
-			log.info("Create News Category (PU News)");
-			newsCategoryDao.create(category);
+		// try {
+		// PU News
+		log.info("Create News Category (PU News)");
+		newsCategoryDao.create(category);
 
-			if (makeThrowsStep1)
-				throw new Exception("Erro forçado para ROLLBACK de tudo! STEP 1");
+		if (makeThrowsStep1)
+			throw new Exception("Erro forçado para ROLLBACK de tudo! STEP 1");
 
-			log.info("Create News with Category (PU News)");
-			newsDao.create(news);
+		log.info("Create News with Category (PU News)");
+		newsDao.create(news);
 
-			if (makeThrowsStep2)
-				throw new Exception("Erro forçado para ROLLBACK de tudo! STEP 2");
+		if (makeThrowsStep2)
+			throw new Exception("Erro forçado para ROLLBACK de tudo! STEP 2");
 
-			// PU User
-			log.info("Create User (PU User)");
-			userDao.create(user);
+		// PU User
+		log.info("Create User (PU User)");
+		userDao.create(user);
 
-			if (makeThrowsStep3)
-				throw new Exception("Erro forçado para ROLLBACK de tudo! STEP 3");
+		if (makeThrowsStep3)
+			throw new Exception("Erro forçado para ROLLBACK de tudo! STEP 3");
 
-			// PU Example
-			log.info("Create Example (PU Example)");
-			exampleDao.create(example);
-
-			return true;
-
-		} catch (Exception e) {
-
-			log.severe("Made ROLLBACK all queries!");
-
-			log.log(Level.SEVERE, "Business Error");
-
-			return false;
-		}
+		// PU Example
+		log.info("Create Example (PU Example)");
+		exampleDao.create(example);
+		
+		return true;
 
 	}
 

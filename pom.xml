@@ -9,6 +9,6 @@
 	<parent>
 		<groupId>org.demoiselle.jee</groupId>
 		<artifactId>demoiselle-parent-rest</artifactId>
-		<version>3.0.0-BETA1</version>
+		<version>3.0.0-BETA2</version>
 	</parent>
 </project>
